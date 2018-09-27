@@ -34,7 +34,14 @@ const incrementor = () => {
   return incrementValue;
 };
 
-const asyncIncrementor = () => {};
+const asyncIncrementor = () => {
+  if (!asyncIncrementor.cnt)  asyncIncrementor.cnt = 0;
+  
+  let asyncIncProm = new Promise((resolve, reject) => {
+    resolve(++asyncIncrementor.cnt);
+  });
+  return asyncIncProm;
+};
 const createIncrementer = () => {};
 
 // return same argument not earlier than in one second, and not later, than in two
