@@ -13,12 +13,27 @@ const createNotEnumerableProperty = (propName) => {
     });
   return propName;
 };
+
 const createProtoMagicObject = () => {
   let magicObj = function(){};
   magicObj.__proto__ = magicObj.prototype;
   return magicObj;
 };
-const incrementor = () => {};
+
+const incrementor = () => {
+  incrementor.cnt = incrementor.cnt || 0;
+
+  function incrementValue() {
+    incrementor.cnt += 1;
+    return incrementValue;
+  }
+  incrementValue.toString = () => {
+    return ++incrementor.cnt;
+  };
+
+  return incrementValue;
+};
+
 const asyncIncrementor = () => {};
 const createIncrementer = () => {};
 
