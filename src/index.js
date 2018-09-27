@@ -21,13 +21,13 @@ const createProtoMagicObject = () => {
 };
 
 const incrementor = () => {
-  incrementor.cnt = incrementor.cnt || 0;
+  if (!incrementor.cnt)  incrementor.cnt = 0;
 
   function incrementValue() {
     incrementor.cnt += 1;
     return incrementValue;
   }
-  incrementValue.toString = () => {
+  incrementValue.valueOf = () => {
     return ++incrementor.cnt;
   };
 
