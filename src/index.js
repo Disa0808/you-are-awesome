@@ -42,7 +42,16 @@ const asyncIncrementor = () => {
   });
   return asyncIncProm;
 };
-const createIncrementer = () => {};
+
+const createIncrementer = () => {
+  const incMaker = function*(){
+    let index = 0;
+    while(true){
+      yield ++index;
+    }
+  }
+  return incMaker();
+};
 
 // return same argument not earlier than in one second, and not later, than in two
 const returnBackInSecond = () => {};
