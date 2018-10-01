@@ -54,11 +54,38 @@ const createIncrementer = () => {
 };
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
-const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+const returnBackInSecond = (returnedParam) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(returnedParam);
+    }, 1000);
+    setTimeout(() => {
+      reject("время вышло!");
+    }, 2000);    
+  })
+};
+const getDeepPropertiesCount = (object) => {
+  let result = 0;
+
+  const helper = (obj) => {
+    for(let subObj in obj) {
+      result++;
+      helper(obj[subObj]);
+    }
+  }
+
+  helper(object);
+  return result;
+};
+const createSerializedObject = () => {
+  return new String("{a:1}");
+};
 const toBuffer = () => {};
-const sortByProto = () => {};
+const sortByProto = (arr) => {
+  return arr.sort((a, b) => {
+    b.__proto__ - a.__proto__;
+  })
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
